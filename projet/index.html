@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur de Moyenne</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="title">Calculateur de Moyenne</h1>
+        <p class="subtitle">Ajoutez les notes avec leurs coefficients</p>
+
+        <label for="nombre-notes">Combien de notes ? (Max 30)</label>
+        <input type="number" id="nombre-notes" min="1" max="30" value="1" class="input-small">
+
+        <button type="button" id="generate-notes-btn">🔄 Générer les Notes</button>
+
+        <div id="notes-container"></div>
+
+        <button type="button" id="calculate-btn">✅ Calculer la Moyenne</button>
+        <button type="button" id="reset-btn">🗑️ Reset</button>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
