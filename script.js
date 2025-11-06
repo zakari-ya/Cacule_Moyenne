@@ -23,15 +23,33 @@ document.getElementById('notes-container').addEventListener('input', function(e)
     }
 });
 
+function showAlert(message) {
+    const modal = document.getElementById('custom-alert');
+    const messageElement = document.getElementById('alert-message');
+    messageElement.textContent = message;
+    modal.style.display = 'block';
+}
+
+document.querySelector('.close').onclick = function() {
+    document.getElementById('custom-alert').style.display = 'none';
+}
+
+// ila clickit 3la ay blasa f la page fermer alert 
+window.onclick = function(event) {
+    const modal = document.getElementById('custom-alert');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+}
 
 function generateNotes() {
     const n = parseInt(document.getElementById('nombre-notes').value);
     if (isNaN(n) || n < 1) {
-        alert("Merci d'entrer un nombre valide de notes (entre 1 et 30).");
+       showAlert("Merci d'entrer un nombre valide de notes (entre 1 et 30).");
         return;
     }
     if (n > 30) {
-        alert("Le nombre maximum de notes est 30.");
+        showAlert("Le nombre maximum de notes est 30.");
         return;
     }
 
@@ -109,12 +127,12 @@ function calculateMoyenne() {
     });
 
     if (!allValid) {
-        alert("Merci de vérifier les notes ou coefficients invalides.");
+       showAlert("Merci de vérifier les notes ou coefficients invalides.");
         return;
     }
 
     if (sommeCoeffs === 0) {
-        alert("Aucun coefficient valide saisi.");
+       showAlert("Aucun coefficient valide saisi.");
         return;
     }
 
