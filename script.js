@@ -72,12 +72,18 @@ function generateNotes() {
 
 
 function addNote() {
+    const currentNotes = document.querySelectorAll('.note-entry');
+    if (currentNotes.length >= 30) {
+        showAlert("Le nombre maximum de notes est 30.");
+        return;
+    }
+
     const container = document.getElementById('notes-container');
     const entry = document.createElement('div');
     entry.className = 'note-entry';
     entry.innerHTML = `
         <input type="number" class="grade" placeholder="Note (ex: 15)" min="0" max="20" step="0.01" required>
-        <input type="number" class="coefficient" placeholder="Coef (ex: 2)" min="1" value="1" required>
+        <input type="number" class="coefficient" placeholder="Coef (0-7)" min="0" max="7" value="1" required>
         <button type="button" class="remove-btn" onclick="removeNote(this)">❌</button>
     `;
     container.appendChild(entry);
