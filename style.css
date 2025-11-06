@@ -122,6 +122,15 @@ label {
     align-items: center;
 }
 
+#add-note-btn{
+    background: #47b284;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 9px; 
+    align-items: center;
+}
 .note-entry input {
     flex: 1;
     padding: 12px;
