@@ -4,6 +4,9 @@ document.getElementById('calculate-btn').addEventListener('click', calculateMoye
 
 document.getElementById('reset-btn').addEventListener('click', resetForm);
 
+document.getElementById('add-note-btn').addEventListener('click', addNote);
+
+document.getElementById('add-note-btn').style.display = 'none';
 function generateNotes() {
     const n = parseInt(document.getElementById('nombre-notes').value);
     if (isNaN(n) || n < 1) {
@@ -28,11 +31,28 @@ function generateNotes() {
         `;
         container.appendChild(entry);
     }
+    document.getElementById('add-note-btn').style.display = ''
 }
+
+
+
+function addNote() {
+    const container = document.getElementById('notes-container');
+    const entry = document.createElement('div');
+    entry.className = 'note-entry';
+    entry.innerHTML = `
+        <input type="number" class="grade" placeholder="Note (ex: 15)" min="0" max="20" step="0.01" required>
+        <input type="number" class="coefficient" placeholder="Coef (ex: 2)" min="1" value="1" required>
+        <button type="button" class="remove-btn" onclick="removeNote(this)">❌</button>
+    `;
+    container.appendChild(entry);
+}
+
 
 function removeNote(button) {
     button.parentElement.remove();
 }
+
 
 
 function calculateMoyenne() {
@@ -49,8 +69,13 @@ function calculateMoyenne() {
         const note = parseFloat(noteInput.value);
         const coef = parseFloat(coefInput.value);
 
-        if (isNaN(note) || isNaN(coef) || note < 0 || note > 20 || coef < 1) {
-            noteInput.style.borderColor = '#f56565';
+        if (isNaN(note) || isNaN(coef) || note < 0 || note > 20 || coef < 1 || coef > 7 ) {
+            if (coef < 0 || coef > 7) {
+                coefInput.style.borderColor = '#f56565';
+            }
+            if (note < 0 || note > 20) {
+                noteInput.style.borderColor = '#f56565';
+            }
             allValid = false;
         } else {
             sommeNotes += note * coef;
@@ -91,8 +116,10 @@ function calculateMoyenne() {
     resultDiv.innerHTML = `Votre moyenne est: <strong>${moyenne.toFixed(2)}</strong><br><span style="color:${color}; font-size:1.2rem;">${appreciation}</span>`;
 }
 
+
 function resetForm() {
     document.getElementById('notes-container').innerHTML = '';
     document.getElementById('result').className = 'result';
     document.getElementById('nombre-notes').value = '1';
+    document.getElementById('add-note-btn').style.display = 'none';
 }
