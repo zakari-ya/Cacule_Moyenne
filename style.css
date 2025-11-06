@@ -22,7 +22,7 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     padding: 30px;
     width: 100%;
-    max-width: 500px;
+    max-width: 650px;
     text-align: center;
 }
 
@@ -164,3 +164,4 @@ label {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+
