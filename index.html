@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculateur de Moyenne</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="icone.png" type="image/x-icon">
+    <link rel="icon" href="image/icone.png" type="image/x-icon">
 </head>
 <body>
 
     <div class="container">
         <h1 class="title">Calculateur de Moyenne</h1>
-        <p class="subtitle">Ajoutez les notes avec leurs coefficients</p>
+        <p class="subtitle">Ajoutez les notes(0-20) avec leurs coefficients(1-7)</p>
 
         <label for="nombre-notes">Combien de notes ? (Max 30)</label>
         <input type="number" id="nombre-notes" min="1" max="30" value="1" class="input-small">
 
         <button type="button" id="generate-notes-btn">🔄 Générer les Notes</button>
+        <button type="button" id="add-note-btn" id="add-note-btn">➕ Ajouter une Note</button>
 
         <div id="notes-container"></div>
 
