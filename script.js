@@ -121,7 +121,7 @@ function calculateMoyenne() {
         }
 
         
-        if (isNaN(coef) || coef < 0 || coef > 7) {
+        if (isNaN(coef) || coef <= 0 || coef > 7) {
             coefInput.style.borderColor = '#f56565'; // Red border
             allValid = false;
         }
