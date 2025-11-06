@@ -1,12 +1,29 @@
 document.getElementById('generate-notes-btn').addEventListener('click', generateNotes);
-
 document.getElementById('calculate-btn').addEventListener('click', calculateMoyenne);
-
 document.getElementById('reset-btn').addEventListener('click', resetForm);
-
 document.getElementById('add-note-btn').addEventListener('click', addNote);
 
 document.getElementById('add-note-btn').style.display = 'none';
+
+document.getElementById('notes-container').addEventListener('input', function(e) {
+    if (e.target.classList.contains('grade')) {
+        const value = parseFloat(e.target.value);
+        if (!isNaN(value) && value >= 0 && value <= 20) {
+            e.target.style.borderColor = '';
+        } else {
+            e.target.style.borderColor = '#f56565';
+        }
+    } else if (e.target.classList.contains('coefficient')) {
+        const value = parseFloat(e.target.value);
+        if (!isNaN(value) && value > 0 && value <= 7) {
+            e.target.style.borderColor = '';
+        } else {
+            e.target.style.borderColor = '#f56565';
+        }
+    }
+});
+
+
 function generateNotes() {
     const n = parseInt(document.getElementById('nombre-notes').value);
     if (isNaN(n) || n < 1) {
@@ -31,7 +48,7 @@ function generateNotes() {
         `;
         container.appendChild(entry);
     }
-    document.getElementById('add-note-btn').style.display = ''
+    document.getElementById('add-note-btn').style.display = '';
 }
 
 
@@ -69,15 +86,23 @@ function calculateMoyenne() {
         const note = parseFloat(noteInput.value);
         const coef = parseFloat(coefInput.value);
 
-        if (isNaN(note) || isNaN(coef) || note < 0 || note > 20 || coef < 1 || coef > 7 ) {
-            if (coef < 0 || coef > 7) {
-                coefInput.style.borderColor = '#f56565';
-            }
-            if (note < 0 || note > 20) {
-                noteInput.style.borderColor = '#f56565';
-            }
+          
+        noteInput.style.borderColor = '';
+        coefInput.style.borderColor = '';
+
+        
+        if (isNaN(note) || note < 0 || note > 20) {
+            noteInput.style.borderColor = '#f56565'; // Red border
             allValid = false;
-        } else {
+        }
+
+        
+        if (isNaN(coef) || coef < 0 || coef > 7) {
+            coefInput.style.borderColor = '#f56565'; // Red border
+            allValid = false;
+        }
+
+        if (allValid && !isNaN(note) && !isNaN(coef)) {
             sommeNotes += note * coef;
             sommeCoeffs += coef;
         }
@@ -123,3 +148,4 @@ function resetForm() {
     document.getElementById('nombre-notes').value = '1';
     document.getElementById('add-note-btn').style.display = 'none';
 }
+
